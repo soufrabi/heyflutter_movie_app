@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:heyflutter_movie_app/widgets/for_you_text_widget.dart';
+import 'package:heyflutter_movie_app/widgets/name_icon_widget.dart';
 import 'dart:ui';
 
 import 'package:heyflutter_movie_app/widgets/search_bar.dart';
@@ -11,6 +13,37 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  Widget forYouCards() {
+    return Builder(builder: (context) {
+      return SizedBox(
+        height: MediaQuery.of(context).size.height * 0.50,
+        child: PageView.builder(
+            // itemCount: 4,
+            itemBuilder: (context, index) {
+              return Container(
+                margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+                decoration: BoxDecoration(
+                  boxShadow: const [
+                    BoxShadow(
+                      color: Color(0xFF312737),
+                      blurRadius: 10,
+                      spreadRadius: 10,
+                      offset: Offset(0, 3),
+                    ),
+                  ],
+                  image: DecorationImage(
+                    image: NetworkImage(
+                      "https://picsum.photos/id/${index + 1}/500/500",
+                    ),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              );
+            }),
+      );
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,50 +56,10 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text(
-                        "Hi! Melanie",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 32,
-                        ),
-                      ),
-                      Container(
-                        height: 50,
-                        width: 50,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(25),
-                          image: const DecorationImage(
-                            image: NetworkImage(
-                              "https://i.pravatar.cc/150?img=1",
-                            ),
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                CustomSearchBar(),
-                const Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 30,
-                    vertical: 6,
-                  ),
-                  child: Text(
-                    "For you",
-                    style: TextStyle(
-                      color: Colors.white60,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w300,
-                    ),
-                  ),
-                ),
+                const NameIconWidget(),
+                const CustomSearchBar(),
+                const ForYouTextWidget(),
+                forYouCards(),
               ],
             ),
           )),
