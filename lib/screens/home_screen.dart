@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:heyflutter_movie_app/widgets/lead_text_widget.dart';
 import 'package:heyflutter_movie_app/widgets/name_icon_widget.dart';
 import 'dart:ui';
+// import 'dart:math' as math;
 
 import 'package:heyflutter_movie_app/widgets/search_bar.dart';
 
@@ -44,6 +46,37 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+  Widget popularCards() {
+    return Builder(builder: (context) {
+      return Container(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 15,
+          vertical: 6,
+        ),
+        height: MediaQuery.of(context).size.height * 0.2,
+        child: ListView.builder(
+          scrollDirection: Axis.horizontal,
+          itemCount: 10,
+          itemBuilder: (context, index) {
+            return Container(
+              width: 150,
+              margin: const EdgeInsets.only(right: 10.0),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                image: DecorationImage(
+                  image: NetworkImage(
+                    "https://avatar.iran.liara.run/public/${ (index-10) % 4 == 0 ? "boy" : "girl" }?username=${index + 1}",
+                  ),
+                  fit: BoxFit.cover,
+                ),
+              ),
+            );
+          },
+        ),
+      );
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,6 +94,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 const LeadTextWidget(heading: "For you"),
                 forYouCards(),
                 const LeadTextWidget(heading: "Popular"),
+                popularCards(),
               ],
             ),
           )),
