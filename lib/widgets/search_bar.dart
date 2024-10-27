@@ -26,14 +26,26 @@ class CustomSearchBar extends StatelessWidget {
               size: 32,
               color: Colors.white30,
             ),
-            const SizedBox(
+            SizedBox(
               width: 12,
             ),
-            Text(
-              "Search ...",
-              style: TextStyle(
-                color: Colors.white60,
-                fontSize: 18,
+            Expanded(
+              child: TextField(
+                maxLines: 1,
+                autocorrect: false,
+                autofocus: false,
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  hintText: "Search ...",
+                  hintStyle: TextStyle(
+                    color: Colors.white60,
+                    fontSize: 20,
+                  ),
+                ),
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                ),
               ),
             ),
           ],
