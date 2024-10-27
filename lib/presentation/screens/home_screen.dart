@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:heyflutter_movie_app/features/detail_movie/presentation/detail_movie.dart';
 import 'package:heyflutter_movie_app/presentation/widgets/lead_text_widget.dart';
 import 'package:heyflutter_movie_app/presentation/widgets/name_icon_widget.dart';
 import 'package:heyflutter_movie_app/presentation/widgets/search_bar.dart';
@@ -52,66 +53,73 @@ class _HomeScreenState extends State<HomeScreen> {
         height: MediaQuery.of(context).size.height * 0.2,
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
-          itemCount: 10,
           itemBuilder: (context, index) {
-            return Container(
-              width: 150,
-              margin: const EdgeInsets.only(right: 10.0),
-              child: Stack(
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      image: DecorationImage(
-                        image: NetworkImage(
-                            "https://i.pravatar.cc/150?img=${index + 1}"),
-                        fit: BoxFit.cover,
+            return InkWell(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const DetailMovieScreen()));
+              },
+              child: Container(
+                width: 150,
+                margin: const EdgeInsets.only(right: 10.0),
+                child: Stack(
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        image: DecorationImage(
+                          image: NetworkImage(
+                              "https://i.pravatar.cc/150?img=${index + 1}"),
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
-                  ),
-                  Positioned(
-                    left: 0,
-                    bottom: 0,
-                    right: 0,
-                    child: Container(
-                        padding: const EdgeInsets.all(4.0),
-                        color: const Color(0x0E0C0E).withOpacity(0.6),
-                        child: const Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Shang-Chi",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 16,
+                    Positioned(
+                      left: 0,
+                      bottom: 0,
+                      right: 0,
+                      child: Container(
+                          padding: const EdgeInsets.all(4.0),
+                          color: const Color(0x0E0C0E).withOpacity(0.6),
+                          child: const Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Shang-Chi",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 16,
+                                    ),
                                   ),
-                                ),
-                                Text(
-                                  "2023",
-                                  style: TextStyle(
-                                    color: Colors.white70,
-                                    fontSize: 14,
+                                  Text(
+                                    "2023",
+                                    style: TextStyle(
+                                      color: Colors.white70,
+                                      fontSize: 14,
+                                    ),
                                   ),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Text(
-                                  "4.5",
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 14),
-                                ),
-                                Icon(Icons.star, color: Colors.yellow)
-                              ],
-                            ),
-                          ],
-                        )),
-                  ),
-                ],
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Text(
+                                    "4.5",
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 14),
+                                  ),
+                                  Icon(Icons.star, color: Colors.yellow)
+                                ],
+                              ),
+                            ],
+                          )),
+                    ),
+                  ],
+                ),
               ),
             );
           },
