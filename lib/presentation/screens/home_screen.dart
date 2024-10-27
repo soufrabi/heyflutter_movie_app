@@ -18,7 +18,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget forYouCards() {
     return Builder(builder: (context) {
       return SizedBox(
-        height: MediaQuery.of(context).size.height * 0.45,
+        height: MediaQuery.of(context).size.height * 0.4,
         child: PageView.builder(
             // itemCount: 4,
             itemBuilder: (context, index) {
@@ -61,14 +61,61 @@ class _HomeScreenState extends State<HomeScreen> {
             return Container(
               width: 150,
               margin: const EdgeInsets.only(right: 10.0),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                image: DecorationImage(
-                  image: NetworkImage(
-                    "https://avatar.iran.liara.run/public/${ (index-10) % 4 == 0 ? "boy" : "girl" }?username=${index + 1}",
+              child: Stack(
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      image: DecorationImage(
+                        image: NetworkImage(
+                            "https://i.pravatar.cc/150?img=${index + 1}"),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
                   ),
-                  fit: BoxFit.cover,
-                ),
+                  Positioned(
+                    left: 0,
+                    bottom: 0,
+                    right: 0,
+                    child: Container(
+                        padding: EdgeInsets.all(4.0),
+                        color: const Color(0x0E0C0E).withOpacity(0.6),
+                        child: const Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Shang-Chi",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                  ),
+                                ),
+                                Text(
+                                  "2023",
+                                  style: TextStyle(
+                                    color: Colors.white70,
+                                    fontSize: 14,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  "4.5",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 14),
+                                ),
+                                Icon(Icons.star, color: Colors.yellow)
+                              ],
+                            ),
+                          ],
+                        )),
+                  ),
+                ],
               ),
             );
           },
