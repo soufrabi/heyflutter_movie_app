@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:heyflutter_movie_app/widgets/lead_text_widget.dart';
-import 'package:heyflutter_movie_app/widgets/name_icon_widget.dart';
+
+import 'package:heyflutter_movie_app/presentation/widgets/lead_text_widget.dart';
+import 'package:heyflutter_movie_app/presentation/widgets/name_icon_widget.dart';
 import 'dart:ui';
 // import 'dart:math' as math;
 
-import 'package:heyflutter_movie_app/widgets/search_bar.dart';
+import 'package:heyflutter_movie_app/presentation/widgets/search_bar.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
