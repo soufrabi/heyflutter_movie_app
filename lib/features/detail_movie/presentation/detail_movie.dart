@@ -254,7 +254,27 @@ class DetailMovieScreen extends StatelessWidget {
           right: 0,
           bottom: 0,
           child: buildWatchButton(),
-        )
+        ),
+        Positioned(
+          left: 15,
+          top: 40,
+          child: InkWell(
+            onTap: () {
+              Navigator.of(context).pop();
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20.0),
+                color: Colors.black38.withOpacity(0.5),
+              ),
+              child: const Icon(
+                Icons.arrow_back,
+                color: Colors.white,
+                size: 32,
+              ),
+            ),
+          ),
+        ),
       ]),
     );
   }
