@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-
 import 'package:heyflutter_movie_app/presentation/widgets/lead_text_widget.dart';
 import 'package:heyflutter_movie_app/presentation/widgets/name_icon_widget.dart';
-import 'dart:ui';
-// import 'dart:math' as math;
-
 import 'package:heyflutter_movie_app/presentation/widgets/search_bar.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -78,7 +74,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     bottom: 0,
                     right: 0,
                     child: Container(
-                        padding: EdgeInsets.all(4.0),
+                        padding: const EdgeInsets.all(4.0),
                         color: const Color(0x0E0C0E).withOpacity(0.6),
                         child: const Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
