@@ -65,7 +65,7 @@ class DetailMovieScreen extends StatelessWidget {
       return Container(
         width: MediaQuery.of(context).size.width,
         height: 200,
-        margin: EdgeInsets.symmetric(
+        margin: const EdgeInsets.symmetric(
           horizontal: 20,
           vertical: 10,
         ),
@@ -75,21 +75,21 @@ class DetailMovieScreen extends StatelessWidget {
             Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20.0),
-                image: DecorationImage(
+                image: const DecorationImage(
                   image: NetworkImage("https://i.pravatar.cc/500?img=32"),
                   fit: BoxFit.cover,
                 ),
               ),
             ),
             Container(
-              child: Icon(
-                Icons.play_arrow,
-                color: Colors.black45,
-                size: 32,
-              ),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
                 color: Colors.white,
+              ),
+              child: const Icon(
+                Icons.play_arrow,
+                color: Colors.black45,
+                size: 32,
               ),
             )
           ],
@@ -101,7 +101,10 @@ class DetailMovieScreen extends StatelessWidget {
   Widget buildCast() {
     return Builder(builder: (context) {
       return Container(
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        padding: const EdgeInsets.symmetric(
+          horizontal: 20,
+          vertical: 10,
+        ),
         height: MediaQuery.of(context).size.height * 0.2,
         // width: 400,
         child: ListView.builder(
@@ -142,6 +145,105 @@ class DetailMovieScreen extends StatelessWidget {
         ),
       );
     });
+  }
+
+  Widget buildComments() {
+    return Container(
+      margin: const EdgeInsets.symmetric(
+        horizontal: 20,
+        vertical: 10,
+      ),
+      height: 200,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemBuilder: (context, index) {
+          return Container(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 15.0,
+              vertical: 10,
+            ),
+            margin: const EdgeInsets.only(
+              right: 20.0,
+            ),
+            width: 250.0,
+            decoration: BoxDecoration(
+              color: const Color(0xFF2D2432),
+              borderRadius: BorderRadius.circular(20.0),
+            ),
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Row(
+                      children: [
+                        // Commenter avatar
+                        Container(
+                          width: 50,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(25.0),
+                            image: DecorationImage(
+                              image: NetworkImage(
+                                  "https://i.pravatar.cc/150?img=${index + 1}"),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 10.0,
+                        ),
+                        const Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Cody Fisher",
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
+                            ),
+                            Text(
+                              "June 14, 2002",
+                              style: TextStyle(
+                                color: Colors.white60,
+                              ),
+                            )
+                          ],
+                        )
+                      ],
+                    ),
+                    // Rating given by Commenter
+                    const Row(
+                      children: [
+                        Text(
+                          "4.8",
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
+                        Icon(
+                          Icons.star,
+                          color: Colors.yellow,
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+                const SizedBox(
+                  height: 10.0,
+                ),
+                const Text(
+                  "Great movie! I will review it more than once. Special thanks to one the operator!",
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
+      ),
+    );
   }
 
   @override
@@ -243,6 +345,7 @@ class DetailMovieScreen extends StatelessWidget {
               buildHeading("Trailer"),
               buildTrailer(),
               buildHeading("Comments"),
+              buildComments(),
               const SizedBox(
                 height: 80,
               ),
